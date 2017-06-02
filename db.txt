@@ -1,0 +1,21 @@
+
+
+CREATE TABLE `ciudades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `enlace` varchar(255)  NULL,
+  PRIMARY KEY (ID)
+  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `hoteles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `nombre` varchar(2505)  NULL,
+  PRIMARY KEY (ID)
+  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+  TRUNCATE [TABLE] tbl_name
+  TRUNCATE ciudades
