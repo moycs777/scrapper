@@ -35,7 +35,7 @@
 	for ($i=0; $i <=count($data['ciudades']) ; $i++) { 
 		
 		echo "...";
-		echo $data['ciudades'][$i] . '<br>';
+		//echo $data['ciudades'][$i] . '<br>';
 		echo $data['enlaces'][$i] . '<br>';
 		/*mysqli_query($conexion,"insert into ciudades (nombre, enlace) values 
 		                       ('".$data['ciudades'][$i]."' , '".$data['enlaces'][$i]."' )") or die("Problemas en el select".mysqli_error($conexion));*/
@@ -56,23 +56,46 @@
 		$director2 = new PageBuilderDirector($builder2);
 		$director2->buildPage();
 		$data2 = $page2->getData();
-
-		for ($i=0; $i <count($data2['hoteles'][$i]) ; $i++) { 
+		echo "<pre>";
+		//print_r ($data2);
+		echo "</pre>";
+		/*for ($i=0; $i <count($data2['hoteles'][$i]) ; $i++) { 
 			echo $data2['hoteles'][$i];
-			/*mysqli_query($conexion,"insert into hoteles (nombre) values 
-		                       ('".$data2['hoteles'][$i]."')") or die("Problemas en el select".mysqli_error($conexion));*/
+			mysqli_query($conexion,"insert into hoteles (nombre) values 
+		                       ('".$data2['hoteles'][$i]."')") or die("Problemas en el select".mysqli_error($conexion));
 			
 		}
 
 		echo "<pre>";
 		//print_r ($data2);
-		echo "</pre>";
+		echo "</pre>";*/
+		
 
 
 		
 	}
 	//echo "Ciudades grabadas";
+
 	
+			$page3 = new Page();
+			$page3
+			->setUrl("https://www.tripadvisor.com.ve".$data['enlaces'][3]);
+			$builder3 = new PageBuilder($page3);
+			$builder3->setDataConfig([
+			    
+			    'hoteles' => "/html/body[@id='BODY_BLOCK_JQUERY_REFLOW']/div[@id='PAGE']/div[@id='MAINWRAP']/div[@id='MAIN']/div[@id='BODYCON']/div[@class='wrpHeader']/div[@class='ui_container page']/div[@class='ui_columns listingsAndFilters']/div[@id='VR_SRP_CENTER_COLUMN']/div[3]/div[@class='vr_listings']/div[@class='vr_listing']/div/div/div/a",
+
+			]);
+
+			$director2 = new PageBuilderDirector($builder3);
+			$director2->buildPage();
+			$data3 = $page3->getData();
+			echo "<pre>";
+			print_r ($data3);
+			echo "</pre>";
+		
+
+			
 	
 	echo "Rentals grabados";
 
