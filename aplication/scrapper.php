@@ -43,10 +43,10 @@
 	echo "</pre>";
 	$j = 0;	
 	
-	for ($i=0; $i < 3; $i++) { 
+	for ($i=0; $i < 2; $i++) { 
 
 		$ciudad = $ciudad_enlace['ciudades'][$i]; 
-		$iterador = floor ( preg_replace("/[^0-9]/", "", $ciudad)/50 )-1;  
+		$iterador = ceil ( preg_replace("/[^0-9]/", "", $ciudad)/50 )-1;  
 		/*echo "Iterador :". $iterador . "<br>";*/
 		mysqli_query($conexion,"insert into ciudades (nombre, enlace) values 
 		                       ('".$ciudad_enlace['ciudades'][$i]."' , '".$ciudad_enlace['enlaces'][$i]."' )") or die("Problemas en el select".mysqli_error($conexion));
@@ -77,9 +77,9 @@
 		            $w = $w + 50;
 		        	$sw = "1";
 		        	echo $ww . "<br>";
-		        	echo "https://www.tripadvisor.com.ve".$ww;
+		        	echo "https://www.tripadvisor.com.ve/".$ww;
 
-	                    $url2 = "https://www.tripadvisor.com.ve".$ww;
+	                    $url2 = "https://www.tripadvisor.com.ve/".$ww;
 		                $page3 = new Page();
 				      	$page3->setUrl("https://www.tripadvisor.com.ve/".$ww);
 						$builder3 = new PageBuilder($page3);
@@ -109,9 +109,7 @@
 	}
 			
 
-	echo "<pre>";
-	print_r ($hoteles);
-	echo "</pre>";
+	echo "fin";
 		
 
 	mysqli_close($conexion);	
