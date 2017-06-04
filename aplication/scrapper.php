@@ -69,10 +69,10 @@
 	}
 			
 
-		echo "<pre>";
-		print_r ($hoteles);
-		echo "</pre>";
-			
+	echo "<pre>";
+	print_r ($hoteles);
+	echo "</pre>";
+		
 	
 	
 
