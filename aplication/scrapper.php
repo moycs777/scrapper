@@ -35,14 +35,13 @@
 	//creacion de ciudades
 	
 	//echo "Ciudades grabadas";
-	for ($i=0; $i <= 2; $i++) { 
+	for ($i=0; $i < 3; $i++) { 
 		
-		/*mysqli_query($conexion,"insert into ciudades (nombre, enlace) values 
-		                       ('".$data['ciudades'][$i]."' , '".$data['enlaces'][$i]."' )") or die("Problemas en el select".mysqli_error($conexion));*/
+		mysqli_query($conexion,"insert into ciudades (nombre, enlace) values 
+		                       ('".$ciudad_enlace['ciudades'][$i]."' , '".$ciudad_enlace['enlaces'][$i]."' )") or die("Problemas en el select".mysqli_error($conexion));
 	
 		$page3 = new Page();
-		$page3
-			->setUrl("https://www.tripadvisor.com.ve".$ciudad_enlace['enlaces'][$i]);
+		$page3->setUrl("https://www.tripadvisor.com.ve".$ciudad_enlace['enlaces'][$i]);
 		$builder3 = new PageBuilder($page3);
 		$builder3->setDataConfig([
 		    
@@ -56,16 +55,18 @@
 		/*echo "<pre>";
 		print_r ($hoteles);
 		echo "</pre>";*/
-		echo $ciudad_enlace['ciudades'][$i];		
 		
+		echo $ciudad_enlace['ciudades'][$i];		
 		$ciudad_id = $i + 1;
-		foreach ($hoteles['nombre'] as $hotel) {
-			# code...
+		
+		for ($x=0; $x < count($hoteles['nombre']); $x++) { 
 			mysqli_query($conexion,"insert into hoteles (nombre, ciudad_id) values 
-		                       ('".$hotel."' , '".$ciudad_id."' )") or die("Problemas en el select".mysqli_error($conexion));
+		                       ('".$hoteles['nombre'][$x]."' , '".$ciudad_id."' )") or die("Problemas en el select".mysqli_error($conexion));
 		}
 		
-
+		/*echo "<pre>";
+		print_r ($hoteles);
+		echo "</pre>";*/
 	}
 			
 
