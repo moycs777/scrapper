@@ -20,6 +20,7 @@
 	},
 	"require": {
         "symfony/css-selector": "~2.6",
-		"phpunit/phpunit": "~4.0"
+		"phpunit/phpunit": "~4.0",
+		"curl/curl": "^1.6"
 	}
 }

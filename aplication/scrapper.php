@@ -24,79 +24,56 @@
 
 	$director = new PageBuilderDirector($builder);
 	$director->buildPage();
-	$data = $page->getData();
+	$ciudad_enlace = $page->getData();
 
 	echo "<pre>";
-	print_r ($data);
+	print_r ($ciudad_enlace);
 	echo "</pre>";
+	$j = 0;
 
 
 	//creacion de ciudades
-	for ($i=0; $i <=count($data['ciudades']) ; $i++) { 
+	
+	//echo "Ciudades grabadas";
+	for ($i=0; $i <= 2; $i++) { 
 		
-		echo "...";
-		//echo $data['ciudades'][$i] . '<br>';
-		echo $data['enlaces'][$i] . '<br>';
 		/*mysqli_query($conexion,"insert into ciudades (nombre, enlace) values 
 		                       ('".$data['ciudades'][$i]."' , '".$data['enlaces'][$i]."' )") or die("Problemas en el select".mysqli_error($conexion));*/
-
-		//creacion de hoteles por ciudad
-		$uri = "https://www.tripadvisor.com.ve/";
-		
-		$page2 = new Page();
-		$page2
-		->setUrl("https://www.tripadvisor.com.ve".$data['enlaces'][$i]);
-		$builder2 = new PageBuilder($page2);
-		$builder2->setDataConfig([
+	
+		$page3 = new Page();
+		$page3
+			->setUrl("https://www.tripadvisor.com.ve".$ciudad_enlace['enlaces'][$i]);
+		$builder3 = new PageBuilder($page3);
+		$builder3->setDataConfig([
 		    
-		    'hoteles' => "/html/body[@id='BODY_BLOCK_JQUERY_REFLOW']/div[@id='PAGE']/div[@id='MAINWRAP']/div[@id='MAIN']/div[@id='BODYCON']/div[@class='wrpHeader']/div[@class='ui_container page']/div[@class='ui_columns listingsAndFilters']/div[@id='VR_SRP_CENTER_COLUMN']/div[3]/div[@class='vr_listings']/div[@class='vr_listing']/div/div/div/a",
+		    'nombre' => "/html/body[@id='BODY_BLOCK_JQUERY_REFLOW']/div[@id='PAGE']/div[@id='MAINWRAP']/div[@id='MAIN']/div[@id='BODYCON']/div[@class='wrpHeader']/div[@class='ui_container page']/div[@class='ui_columns listingsAndFilters']/div[@id='VR_SRP_CENTER_COLUMN']/div[3]/div[@class='vr_listings']/div[@class='vr_listing']/div/div/div/a",
 
 		]);
 
-		$director2 = new PageBuilderDirector($builder2);
+		$director2 = new PageBuilderDirector($builder3);
 		$director2->buildPage();
-		$data2 = $page2->getData();
-		echo "<pre>";
-		//print_r ($data2);
-		echo "</pre>";
-		/*for ($i=0; $i <count($data2['hoteles'][$i]) ; $i++) { 
-			echo $data2['hoteles'][$i];
-			mysqli_query($conexion,"insert into hoteles (nombre) values 
-		                       ('".$data2['hoteles'][$i]."')") or die("Problemas en el select".mysqli_error($conexion));
-			
-		}
-
-		echo "<pre>";
-		//print_r ($data2);
+		$hoteles = $page3->getData();
+		/*echo "<pre>";
+		print_r ($hoteles);
 		echo "</pre>";*/
+		echo $ciudad_enlace['ciudades'][$i];		
+		
+		$ciudad_id = $i + 1;
+		foreach ($hoteles['nombre'] as $hotel) {
+			# code...
+			mysqli_query($conexion,"insert into hoteles (nombre, ciudad_id) values 
+		                       ('".$hotel."' , '".$ciudad_id."' )") or die("Problemas en el select".mysqli_error($conexion));
+		}
 		
 
-
-		
 	}
-	//echo "Ciudades grabadas";
+			
 
-	
-			$page3 = new Page();
-			$page3
-			->setUrl("https://www.tripadvisor.com.ve".$data['enlaces'][3]);
-			$builder3 = new PageBuilder($page3);
-			$builder3->setDataConfig([
-			    
-			    'hoteles' => "/html/body[@id='BODY_BLOCK_JQUERY_REFLOW']/div[@id='PAGE']/div[@id='MAINWRAP']/div[@id='MAIN']/div[@id='BODYCON']/div[@class='wrpHeader']/div[@class='ui_container page']/div[@class='ui_columns listingsAndFilters']/div[@id='VR_SRP_CENTER_COLUMN']/div[3]/div[@class='vr_listings']/div[@class='vr_listing']/div/div/div/a",
-
-			]);
-
-			$director2 = new PageBuilderDirector($builder3);
-			$director2->buildPage();
-			$data3 = $page3->getData();
-			echo "<pre>";
-			print_r ($data3);
-			echo "</pre>";
-		
-
+		echo "<pre>";
+		print_r ($hoteles);
+		echo "</pre>";
 			
 	
-	echo "Rentals grabados";
+	
 
 	mysqli_close($conexion);	
