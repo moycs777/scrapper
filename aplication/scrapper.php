@@ -43,7 +43,7 @@
 	echo "</pre>";
 	$j = 0;	
 	
-	for ($i=0; $i < 2; $i++) { 
+	for ($i=0; $i < 4; $i++) { 
 
 		$ciudad = $ciudad_enlace['ciudades'][$i]; 
 		$iterador = ceil ( preg_replace("/[^0-9]/", "", $ciudad)/50 )-1;  
