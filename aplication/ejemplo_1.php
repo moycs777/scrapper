@@ -1,19 +1,17 @@
 <?php
+	 
+	/*$cantidad_hoteles =preg_replace("/[^0-9]/", "", $nombre_ciudad);
+	echo $cantidad_hoteles;*/
+	$ciudad = var; 
+	echo  $iterador = floor (  preg_replace("/[^0-9]/", "", $ciudad)/50 );  
 
-	$cadena = "BbAA";
-	$patron1 = "/^[a-z]+$/";// Solo mayusculas
-	$patron2 = "/^[a-z]+$/i";//i : Es un modificador insensible a mayusculas o minusculas
-
-
-	$cadena = "/VacationRentals-g34515-Reviews-Orlando_Florida-Vacation_Rentals.html";
+	
+	$cadena = var;
 	$patron = "/Reviews-/";
-
 	$tam_cadena = strlen($cadena);
 	$tam_patron = strlen($patron);
-
 	//echo "Tamaño :" . $tam . "<br>";
 	$encontrado = preg_match_all($patron, $cadena, $coincidencias, PREG_OFFSET_CAPTURE);
-
 
 	if ($encontrado) {
 	    /*print "<pre>"; print_r($coincidencias); print "</pre>\n";
@@ -31,7 +29,7 @@
 	        //x = valor/50
 	        $sw = "0";
 	        $w = 0;
-	        for ($i=0; $i <20 ; $i++) { 
+	        for ($i=0; $i <= $iterador ; $i++) { 
 	        	if ($sw == "0") {
 	        		$ww= $cadena_1 . $cadena_2;
 	        	}else  {
@@ -48,4 +46,3 @@
 	    print "<p>No se han encontrado coincidencias.</p>\n";
 	}
 
-?>

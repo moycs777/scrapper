@@ -59,10 +59,10 @@
 		echo $ciudad_enlace['ciudades'][$i];		
 		$ciudad_id = $i + 1;
 		
-		// for ($x=0; $x < count($hoteles['nombre']); $x++) { 
-		// 	mysqli_query($conexion,"insert into hoteles (nombre, ciudad_id) values 
-		//                        ('".$hoteles['nombre'][$x]."' , '".$ciudad_id."' )") or die("Problemas en el select".mysqli_error($conexion));
-		// }
+		for ($x=0; $x < count($hoteles['nombre']); $x++) { 
+			mysqli_query($conexion,"insert into hoteles (nombre, ciudad_id) values 
+		                       ('".$hoteles['nombre'][$x]."' , '".$ciudad_id."' )") or die("Problemas en el select".mysqli_error($conexion));
+		}
 		
 		/*echo "<pre>";
 		print_r ($hoteles);
